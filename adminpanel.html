@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="adminpanel.css"> <!-- Link to the new CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Admin Panel</h1>
+            <select id="jsonSelect">
+                <!-- Options for JSON files will be populated here -->
+            </select>
+            <div class="question-list-section">
+                <h2>Existing Questions</h2>
+                <ul id="questionList">
+                    <!-- List of questions will be populated here -->
+                </ul>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="form-header">
+                <h2>Add Question</h2>
+                <div class="top-buttons">
+                    <button id="downloadJsonBtn">Download JSON</button>
+                    <button id="clearStorageBtn">Clear Storage</button>
+                </div>
+            </div>
+            
+            <div class="in-gr">
+                <div>
+                    <label for="qid">Question ID:</label>
+                    <input type="text" id="qid" placeholder="Question ID" />
+                </div>
+                <div>
+                    <label for="qpic">Question Picture URL:</label>
+                    <input type="text" id="qpic" placeholder="Question Picture URL" />
+                </div>
+            </div>
+            
+            <label for="qtitle">Question Title:</label>
+            <textarea id="qtitle" placeholder="Question Title"></textarea>
+            
+            <label for="qcor">Correct Answer:</label>
+            <input type="text" id="qcor" placeholder="Correct Answer" />
+            
+            <label for="qref">Reference:</label>
+            <textarea id="qref" placeholder="Reference"></textarea>
+            
+            <div class="input-group">
+                <div class="option">
+                    <label for="opt1">Option 1:</label>
+                    <textarea id="opt1" placeholder="Option 1"></textarea>
+                </div>
+                <div class="option">
+                    <label for="opt2">Option 2:</label>
+                    <textarea id="opt2" placeholder="Option 2"></textarea>
+                </div>
+                <div class="option">
+                    <label for="opt3">Option 3:</label>
+                    <textarea id="opt3" placeholder="Option 3"></textarea>
+                </div>
+                <div class="option">
+                    <label for="opt4">Option 4:</label>
+                    <textarea id="opt4" placeholder="Option 4"></textarea>
+                </div>
+            </div>
+        
+            <div class="button-group">
+                <button id="bringQuestionBtn">Bring Question</button>
+                <button id="addQuestionBtn">Add/Save Question</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="adminpanel.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>

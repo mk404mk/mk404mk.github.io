@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Commented out login page for testing
+    <div id="loginPage">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+    -->
+
+    <div id="welcomePage">
+        <h2>Welcome! Select a topic and number of questions</h2>
+        <select id="topicSelect">
+            <option value="main">Main</option>
+            <option value="amksrc">Topic B</option>
+            <option value="C">Topic C</option>
+        </select>
+        <input type="number" id="questionCount" min="1" max="5" value="5">
+        <button id="startQuizButton">Take the test!</button>
+    </div>
+
+    <button onclick="window.location.href='adminpanel.html'" style="position: absolute; top: 10px; right: 10px;">Admin</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

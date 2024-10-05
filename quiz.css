@@ -1,0 +1,92 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+#quizPage {
+    background-color: #2c2c2c;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+#questionContainer {
+    margin-bottom: 20px;
+    
+    
+}
+
+.option-container {
+    margin-bottom: 10px;
+    
+}
+
+.option-label {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-label:hover {
+    background-color: #4a4a4a;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .option-label {
+    background-color: #1e3a5f;
+    border-color: #4a90e2;
+}
+
+button {
+    background-color: #4a90e2;
+    color: #e0e0e0;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3a7fcf;
+}
+
+#endQuizButton {
+    background-color: #555555;
+}
+
+#endQuizButton:hover {
+    background-color: #7a5a34;
+}
+
+#checkButton {
+    background-color: #2ecc71;
+}
+
+#checkButton:hover {
+    background-color: #27ae60;
+}
+
+.qref {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 5px;
+}

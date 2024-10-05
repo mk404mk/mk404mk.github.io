@@ -1,0 +1,165 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px; /* Increased max-width to accommodate the new layout */
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    position: relative; /* Add this to allow absolute positioning of child elements */
+}
+
+.container {
+    display: flex;
+    gap: 10px; /* Increased gap between the two sections */
+    padding-top: 10px; /* Add padding to make room for the top buttons */
+}
+
+.top-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar {
+    flex: 1;
+    width: 100%; /* Changed from max-width to width */
+    min-width: 250px; /* Ensure a minimum width */
+}
+
+.form-section {
+    flex: 3; /* Takes 3/4 of the width */
+    width: 75%; /* Changed from max-width to width */
+}
+
+#jsonSelect {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.question-list-section {
+    flex: 1; /* Takes 1/4 of the width */
+    max-width: 100%; /* Ensure it doesn't grow beyond 25% */
+    margin-top: 20px;
+}
+
+h1 {
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #b0b0b0;
+    margin-bottom: 15px;
+}
+
+select, input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+select:focus, input[type="text"]:focus, textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+button {
+    background-color: #4a90e2;
+    color: #e0e0e0;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3a7fcf;
+}
+
+#addQuestionBtn {
+    margin-right: 10px;
+}
+
+#questionList {
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto; /* Keep this to allow scrolling if needed */
+    max-height: 70vh; /* Limit height and enable scrolling if needed */
+}
+
+#questionList li {
+    background-color: #3a3a3a;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    word-break: break-word; /* Prevent long words from overflowing */
+    font-size: 14px; /* Adjust font size for better readability */
+    line-height: 1.4; /* Improve line spacing */
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Increased gap for more space between options */
+}
+
+.option {
+    flex: 1 0 calc(50% - 15px); /* Adjust width to account for gap */
+    display: flex;
+    flex-direction: column;
+}
+
+.option label {
+    margin-bottom: 5px;
+}
+
+.option textarea {
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.in-gr {
+    display: flex;
+    gap: 20px; /* Increased gap for more space between the two groups */
+}
+
+.in-gr > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.in-gr label {
+    margin-bottom: 5px; /* Add some space between label and input */
+}
+
+.in-gr input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Add these new styles at the end of the file */
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-header h2 {
+    margin: 0;
+}
+
+.top-buttons {
+    display: flex;
+    gap: 10px;
+}
