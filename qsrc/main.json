@@ -11,5 +11,125 @@
       "2 minutes - 20 seconds",
       "4 minutes - 10 seconds"
     ]
+  },
+  {
+    "qid": "12",
+    "qpic": "",
+    "qtitle": "What can happen if the engine start lever is moved to the IDLE detent \"early\" during the engine start process?",
+    "qcor": "A hot start can occur.",
+    "qref": "FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "The engine will start normally.",
+      "The engine will automatically shut down.",
+      "The fuel efficiency will improve."
+    ]
+  },
+  {
+    "qid": "13",
+    "qpic": "",
+    "qtitle": "What can occur if the ENGINE START switch fails to stay in GRD until the starter cutout RPM? Note: Do not re-engage the ENGINE START switch until engine RPM is below ... N2.",
+    "qcor": "hot start - 20% N2",
+    "qref": "FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "wet start 20% N2",
+      "hot start - 10% N2",
+      "wet start 10% N2"
+    ]
+  },
+  {
+    "qid": "14",
+    "qpic": "",
+    "qtitle": "What should be done if a fluid leak (other than a continuous stream) is discovered during the exterior inspection?",
+    "qcor": "The engine can be started",
+    "qref": "FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "Maintenance action is required before starting",
+      "The engine must not be started"
+    ]
+  },
+  {
+    "qid": "15",
+    "qpic": "",
+    "qtitle": "If the ground crew reports a fluid leak from an engine drain during engine start, what action should be taken?",
+    "qcor": "Continue with the engine start",
+    "qref": "FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "Immediately shut down the engine",
+      "Stop the start process and inspect the engine",
+      "Call maintenance before proceeding"
+    ]
+  },
+  {
+    "qid": "16",
+    "qpic": "",
+    "qtitle": "If a fluid leak continues after the engine is stable at idle, what action can/should be taken?",
+    "qcor": "All of the options are correct.",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "shut down the engine for maintenance action",
+      "run the engine at idle thrust for up to 5 minutes. If the fluid leak\nstops during this time, no maintenance action is needed",
+      "shut down and restart the engine. Run the engine at idle thrust for\nup to 5 minutes. If the fluid leak stops during this time, no\nmaintenance action is needed"
+    ]
+  },
+  {
+    "qid": "17",
+    "qpic": "",
+    "qtitle": "For the first flight of the day, at airport elevations at or above ... feet MSL, if the temperature is below ..., consider placing\nthe Ignition select switch to BOTH before starting the engines.\nThis may increase the likelihood of a successful engine start on the first attempt.",
+    "qcor": "2,000 feet - 5 °C",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "5,000 feet - 15 °C",
+      "2,000 feet - 15 °C",
+      "2,000 feet - 5 °C"
+    ]
+  },
+  {
+    "qid": "18",
+    "qpic": "",
+    "qtitle": "Which of the following conditions would require executing the ABORTED ENGINE START checklist?",
+    "qcor": "All options require ABORTED ENGINE START checklist.",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "The N1 or N2 does not increase or increases very slowly after the EGT increases.",
+      "There is no oil pressure indication by the time the engine is stable at idle.",
+      "The EGT does not increase within 15 seconds after moving the engine start lever to IDLE detent.",
+      "The EGT quickly nears or exceeds the start limit."
+    ]
+  },
+  {
+    "qid": "19",
+    "qpic": "",
+    "qtitle": "Maximum motoring occurs when N2 acceleration is less\nthan ... in approximately ... seconds.",
+    "qcor": "1% - 5",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "1% - 3",
+      "3% - 1",
+      "5% - 1"
+    ]
+  },
+  {
+    "qid": "20",
+    "qpic": "",
+    "qtitle": "At ..., verify that the ENGINE START switch moves to\nOFF and then START VALVE OPEN alert extinguishes.",
+    "qcor": "56% N2",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "72% N2",
+      "56% N1",
+      "72% N1"
+    ]
+  },
+  {
+    "qid": "21",
+    "qpic": "",
+    "qtitle": "What indicates that the engine is stable at idle?",
+    "qcor": "The EGT start limit redline is no longer shown",
+    "qref": " FCOM>Normal Procedures>21 Amplified Procedures>Engine Start Procedure",
+    "qoptions": [
+      "The oil pressure is above the minimum",
+      "The N1 and N2 RPMs are at maximum",
+      "The engine start lever is in the OFF position"
+    ]
   }
 ]
