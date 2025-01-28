@@ -62,16 +62,16 @@ function populateQTypeDropdown(questions) {
 }
 
 function startQuiz() {
-    const topic = document.getElementById('topicSelect').value;
+    const qtype = document.getElementById('qtypeSelect').value;
     const questionCount = parseInt(document.getElementById('questionCount').value);
     
-    if (!topic) {
-        console.error('No topic selected');
+    if (!qtype) {
+        console.error('No question type selected');
         return;
     }
     
-    // Fetch the JSON file from the qsrc folder
-    fetch(`qsrc/${topic}.json`)
+    // Fetch the JSON file from the qsrc folder based on the selected qtype
+    fetch(`qsrc/${qtype}.json`)
         .then(response => response.json())
         .then(data => {
             // Randomly select questions
