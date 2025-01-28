@@ -17,17 +17,29 @@ let currentQuestionIndex = 0;
 let questions = [];
 
 function loadQuiz() {
-    const storedQuestions = localStorage.getItem('selectedQuestions');
-    console.log('Stored questions from localStorage:', storedQuestions);
-    questions = JSON.parse(storedQuestions);
-    console.log('Parsed questions:', questions);
-    if (questions && questions.length > 0) {
-        displayCurrentQuestion();
-        updateNavigationButtons();
-    } else {
-        console.error('No questions found');
-        document.getElementById('questionContainer').innerHTML = '<p>Error: No questions available. Please return to the main page and try again.</p>';
-    }
+    // Fetch questions from the GitHub Gist
+    fetch('https://gist.githubusercontent.com/mk404mk/c5698ff665082c4f287a8c3b70a6ba94/raw/quiz_source.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            questions = data; // Assign fetched questions to the questions variable
+            console.log('Fetched questions:', questions);
+            if (questions && questions.length > 0) {
+                displayCurrentQuestion();
+                updateNavigationButtons();
+            } else {
+                console.error('No questions found');
+                document.getElementById('questionContainer').innerHTML = '<p>Error: No questions available. Please return to the main page and try again.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            document.getElementById('questionContainer').innerHTML = '<p>Error: Unable to load questions. Please try again later.</p>';
+        });
 }
 
 function displayCurrentQuestion() {
