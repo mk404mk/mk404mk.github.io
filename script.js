@@ -83,6 +83,7 @@ function startQuiz() {
     // Store selected questions in localStorage
     localStorage.setItem('selectedQuestions', JSON.stringify(selectedQuestions));
     console.log('Stored questions:', selectedQuestions);
+    alert('Stored questions: ' + JSON.stringify(selectedQuestions)); // Pop-up warning for the selected questions
     
     // Navigate to quiz.html
     window.location.href = 'quiz.html';
