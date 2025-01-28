@@ -62,7 +62,7 @@ function populateQTypeDropdown(questions) {
 }
 
 function startQuiz() {
-    const qtype = document.getElementById('qtypeSelect').value;
+    const qtype = document.getElementById('qtypeSelect').value; // Get the selected question type
     const questionCount = parseInt(document.getElementById('questionCount').value);
     
     if (!qtype) {
@@ -70,22 +70,22 @@ function startQuiz() {
         return;
     }
     
-    // Fetch the JSON file from the qsrc folder based on the selected qtype
-    fetch(`qsrc/${qtype}.json`)
-        .then(response => response.json())
-        .then(data => {
-            // Randomly select questions
-            const shuffled = data.sort(() => 0.5 - Math.random());
-            const selectedQuestions = shuffled.slice(0, questionCount);
-            
-            // Store selected questions in localStorage
-            localStorage.setItem('selectedQuestions', JSON.stringify(selectedQuestions));
-            console.log('Stored questions:', selectedQuestions);
-            
-            // Navigate to quiz.html
-            window.location.href = 'quiz.html';
-        })
-        .catch(error => console.error('Error loading quiz data:', error));
+    // Retrieve the questions from localStorage
+    const allQuestions = JSON.parse(localStorage.getItem('allQuestions')) || []; // Ensure you have stored all questions previously
+
+    // Filter questions based on the selected qtype
+    const filteredQuestions = allQuestions.filter(question => question.qtype === qtype);
+    
+    // Randomly select questions
+    const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffled.slice(0, questionCount);
+    
+    // Store selected questions in localStorage
+    localStorage.setItem('selectedQuestions', JSON.stringify(selectedQuestions));
+    console.log('Stored questions:', selectedQuestions);
+    
+    // Navigate to quiz.html
+    window.location.href = 'quiz.html';
 }
 
 // The following functions should be moved to a separate quiz.js file
