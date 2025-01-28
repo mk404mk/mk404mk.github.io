@@ -16,108 +16,57 @@ function setupQuizEventListeners() {
 let currentQuestionIndex = 0;
 let questions = [];
 
+// Load the selected questions from localStorage
 function loadQuiz() {
-    // Fetch questions from the GitHub Gist
-    fetch('https://gist.githubusercontent.com/mk404mk/c5698ff665082c4f287a8c3b70a6ba94/raw/quiz_source.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            questions = data; // Assign fetched questions to the questions variable
-            console.log('Fetched questions:', questions);
-            if (questions && questions.length > 0) {
-                displayCurrentQuestion();
-                updateNavigationButtons();
-            } else {
-                console.error('No questions found');
-                document.getElementById('questionContainer').innerHTML = '<p>Error: No questions available. Please return to the main page and try again.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-            document.getElementById('questionContainer').innerHTML = '<p>Error: Unable to load questions. Please try again later.</p>';
-        });
+    const storedQuestions = localStorage.getItem('selectedQuestions');
+    if (storedQuestions) {
+        questions = JSON.parse(storedQuestions); // Parse the stored questions
+        console.log('Loaded questions:', questions);
+        if (questions.length > 0) {
+            displayCurrentQuestion();
+            updateNavigationButtons();
+        } else {
+            console.error('No questions found');
+            document.getElementById('questionContainer').innerHTML = '<p>Error: No questions available. Please return to the main page and try again.</p>';
+        }
+    } else {
+        console.error('No questions found in localStorage');
+        document.getElementById('questionContainer').innerHTML = '<p>Error: Unable to load questions. Please try again later.</p>';
+    }
 }
 
 function displayCurrentQuestion() {
-    const container = document.getElementById('questionContainer');
-    if (!container) {
-        console.error('Question container not found');
-        return;
-    }
-    
-    const question = questions[currentQuestionIndex];
-    
-    // Create an array with all options including the correct answer
-    let allOptions = [...question.qoptions];
-    if (!allOptions.includes(question.qcor)) {
-        allOptions.push(question.qcor);
-    }
-    
-    // Shuffle the options
-    const shuffledOptions = shuffleArray(allOptions);
-    
-    container.innerHTML = `
-        <p class="qref">Ref: ${question.qref}</p>
-        <h3>Question ${currentQuestionIndex + 1}: ${question.qtitle}</h3>
-        ${question.qpic ? `<img src="pics/${question.qpic}" alt="Question Image">` : ''}
-        ${shuffledOptions.map((option, i) => `
-            <div class="option-container">
-                <input type="radio" name="q${question.qid}" value="${option}" id="q${question.qid}o${i}">
-                <label class="option-label" for="q${question.qid}o${i}">${option}</label>
+    const questionContainer = document.getElementById('questionContainer');
+    const currentQuestion = questions[currentQuestionIndex];
+
+    questionContainer.innerHTML = `
+        <h3>Question ${currentQuestionIndex + 1}: ${currentQuestion.qtitle}</h3>
+        <img src="${currentQuestion.qpic}" alt="Question Image">
+        ${currentQuestion.qoptions.map((option, i) => `
+            <div>
+                <input type="radio" name="q${currentQuestion.qid}" value="${option}" id="q${currentQuestion.qid}o${i}">
+                <label for="q${currentQuestion.qid}o${i}">${option}</label>
             </div>
         `).join('')}
+        <p id="result${currentQuestion.qid}"></p>
     `;
-
-    // Add event listeners to radio buttons
-    const radioButtons = container.querySelectorAll(`input[name="q${question.qid}"]`);
-    radioButtons.forEach(radio => {
-        radio.addEventListener('change', () => checkAnswer());
-    });
-}
-
-// Add this function to shuffle the array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
 }
 
 function updateNavigationButtons() {
-    const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
-    
-    prevButton.disabled = currentQuestionIndex === 0;
-    nextButton.disabled = currentQuestionIndex === questions.length - 1;
-}
+    const prevButton = document.getElementById('prevButton');
 
-function checkAnswer() {
-    const question = questions[currentQuestionIndex];
-    const selectedOption = document.querySelector(`input[name="q${question.qid}"]:checked`);
-    const correctAnswer = question.qcor;
-    const options = document.querySelectorAll(`input[name="q${question.qid}"]`);
+    if (currentQuestionIndex === 0) {
+        prevButton.style.display = 'none'; // Hide previous button on the first question
+    } else {
+        prevButton.style.display = 'block'; // Show previous button
+    }
 
-    options.forEach(option => {
-        const label = option.nextElementSibling;
-        if (option.value === correctAnswer) {
-            label.style.backgroundColor = 'lightgreen';
-            label.style.borderColor = 'green';
-        } else if (option === selectedOption) {
-            label.style.backgroundColor = 'lightcoral';
-            label.style.borderColor = 'red';
-        } else {
-            // Reset other options to default state
-            label.style.backgroundColor = '';
-            label.style.borderColor = '';
-        }
-        // Disable all options after answering
-        option.disabled = true;
-    });
+    if (currentQuestionIndex === questions.length - 1) {
+        nextButton.textContent = 'Finish'; // Change next button to finish on the last question
+    } else {
+        nextButton.textContent = 'Next'; // Change back to next
+    }
 }
 
 function nextQuestion() {
@@ -125,6 +74,8 @@ function nextQuestion() {
         currentQuestionIndex++;
         displayCurrentQuestion();
         updateNavigationButtons();
+    } else {
+        endQuiz(); // Call endQuiz if it's the last question
     }
 }
 
@@ -136,21 +87,10 @@ function prevQuestion() {
     }
 }
 
-// Remove the submitQuiz function as it's no longer needed
-
-function setupOptionListeners() {
-    const options = document.querySelectorAll('input[type="radio"]');
-    options.forEach(option => {
-        option.addEventListener('change', function() {
-            // No need to reset styles here, as it's handled by CSS
-        });
-    });
-}
-
 function endQuiz() {
-    // Clear the selected questions from localStorage
+    // Logic to end the quiz, e.g., show results or navigate to another page
+    alert('Quiz finished!'); // Placeholder for ending the quiz
+    // Optionally, clear selected questions from localStorage
     localStorage.removeItem('selectedQuestions');
-    
-    // Redirect to the index.html page
-    window.location.href = 'index.html';
+    window.location.href = 'index.html'; // Redirect to the main page or results page
 }
