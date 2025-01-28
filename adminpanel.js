@@ -8,6 +8,8 @@ jsonFiles.forEach(file => {
     jsonSelect.appendChild(option);
 });
 
+require('dotenv').config(); // Load environment variables from .env file
+
 // Function to load questions from localStorage
 function loadQuestionsFromStorage(fileName) {
     const storedData = localStorage.getItem(fileName);
@@ -17,11 +19,39 @@ function loadQuestionsFromStorage(fileName) {
 // Function to save questions to localStorage
 function saveQuestionsToStorage(fileName, questions) {
     localStorage.setItem(fileName, JSON.stringify(questions));
+    
+    // Update the Gist with the new questions
+    fetch('https://api.github.com/gists/c5698ff665082c4f287a8c3b70a6ba94', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `token ${process.env.GITHUB_TOKEN}` // Use the token from environment variable
+        },
+        body: JSON.stringify({
+            files: {
+                'quiz_source.json': {
+                    content: JSON.stringify(questions, null, 2)
+                }
+            }
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to update Gist');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Gist updated successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error updating Gist:', error);
+    });
 }
 
 // Function to load questions from file and save to localStorage
 function loadQuestionsFromFile(fileName) {
-    fetch(`qsrc/${fileName}`)
+    fetch('https://gist.githubusercontent.com/mk404mk/c5698ff665082c4f287a8c3b70a6ba94/raw/quiz_source.json')
         .then(response => response.json())
         .then(questions => {
             saveQuestionsToStorage(fileName, questions);
@@ -188,3 +218,24 @@ function clearFormFields() {
 
 // Add event listener for the clear storage button
 document.getElementById('clearStorageBtn').addEventListener('click', clearStorage);
+
+// Function to load unique subjects from the Gist JSON
+function loadSubjectsFromGist() {
+    fetch('https://gist.githubusercontent.com/mk404mk/c5698ff665082c4f287a8c3b70a6ba94/raw/quiz_source.json')
+        .then(response => response.json())
+        .then(questions => {
+            const uniqueTypes = [...new Set(questions.map(q => q.qtype))];
+            uniqueTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type;
+                jsonSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading subjects:', error);
+        });
+}
+
+// Call the function to load subjects on initial load
+loadSubjectsFromGist();
